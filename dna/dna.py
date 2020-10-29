@@ -1,11 +1,28 @@
 import sys
 
 ## open the CSV file and DNA sequence
-    ##first row has name as the first column and the
-        ##csv reader and DictReader
-        ##sys.argv for command-line arguments
-        #once you've opened a text file f using open(filename), you can read its contents using f.read()
-    ##remaining row corresponds to a person
+csv_file = open(sys.argv[1])
+csv_file = csv_file.read()
+csv_file = csv_file.split('\n')
+dna_file = open(sys.argv[2])
+dna_file = dna_file.read()
+
+headers = csv_file.pop(0)
+dna_sequences = {}
+headers = headers.split(',')
+csv_file.pop()
+
+##loads in dict from csv file
+for row in csv_file:
+    row = row.split(',')
+    row_dict = {}
+    for i in range(len(headers) - 1):
+        row_dict[headers[i+ 1]] = row[i + 1]
+
+    dna_sequences[row[0]] = row_dict
+
+print(dna_sequences)
+
 ##for each STR compute longest run of consecutive repeats in the DNA sequence
     ##for each position in the sequence: compute how many times the STR repeats starting at that position
         ##len(s) in Python will get you the length
