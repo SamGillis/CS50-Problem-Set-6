@@ -1,5 +1,9 @@
 import sys
 
+if len(sys.argv) != 3:
+    print('Usage: python dna.py data.csv sequence.txt')
+    sys.exit()
+
 ## open the CSV file and DNA sequence
 csv_file = open(sys.argv[1])
 csv_file = csv_file.read()
@@ -44,13 +48,14 @@ for each in headers[1:]:
             if counter > longest:
                 longest = counter
 
-    dna_compare[each] = longest
+    dna_compare[each] = str(longest)
 
 ##compare the STR counts against each row in the CSV file
+match = False
 for each in dna_sequences:
     if dna_sequences[each] == dna_compare:
         print(each)
-    ##save STR counts in some data structure
-    ##for each row in the data, check if each STR count matches. If so, print out the person's name.
-        ##int(x)
-        ##need to checky every column other than the first column
+        match = True
+
+if match == False:
+    print('No match.')
