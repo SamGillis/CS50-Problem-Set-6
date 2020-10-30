@@ -47,6 +47,9 @@ for each in headers[1:]:
     dna_compare[each] = longest
 
 ##compare the STR counts against each row in the CSV file
+for each in dna_sequences:
+    if dna_sequences[each] == dna_compare:
+        print(each)
     ##save STR counts in some data structure
     ##for each row in the data, check if each STR count matches. If so, print out the person's name.
         ##int(x)
