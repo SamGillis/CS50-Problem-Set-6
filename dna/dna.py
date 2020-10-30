@@ -21,13 +21,31 @@ for row in csv_file:
 
     dna_sequences[row[0]] = row_dict
 
-print(dna_sequences)
+dna_compare = {}
 
 ##for each STR compute longest run of consecutive repeats in the DNA sequence
     ##for each position in the sequence: compute how many times the STR repeats starting at that position
         ##len(s) in Python will get you the length
         ##slicing
     ##for each position keep checking successive substrings until the STR repeats no longer
+
+for each in headers[1:]:
+    longest = 0
+    for i in range(len(dna_file) - len(each)):
+        if dna_file[i:i+len(each)] == each:
+            counter = 1
+            y = i + len(each)
+            while True:
+                if dna_file[y:y+len(each)] == each:
+                    counter += 1
+                    y += len(each)
+                else:
+                    break
+            if counter > longest:
+                longest = counter
+
+    dna_compare[each] = longest
+
 ##compare the STR counts against each row in the CSV file
     ##save STR counts in some data structure
     ##for each row in the data, check if each STR count matches. If so, print out the person's name.
